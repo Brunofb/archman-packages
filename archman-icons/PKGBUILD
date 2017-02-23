@@ -1,0 +1,21 @@
+# Author: Demiray Muhterem <tulliana@archman.org>
+
+
+pkgname=archman-icons
+pkgver=0.1
+pkgrel=1
+pkgdesc='Archman OS icons'
+arch=('any')
+url='http://archman.org'
+license=('GPL3')
+depends=('')
+conflicts=('')
+source=("http://archman.org/source/archman-icons.tar.gz")
+sha1sums=('a5ea513dafc1cfb2e621508267b8a684a3d7b529')
+
+
+package() {
+  install -d -m 0755 $pkgdir/usr/share/icons/
+  cp -r * $pkgdir/usr/share/icons/
+  rm $pkgdir/usr/share/icons/archman-icons.tar.gz
+}

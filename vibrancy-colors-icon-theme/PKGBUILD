@@ -1,0 +1,18 @@
+# Maintainer: Demiray Muhterem <tulliana@archman.org>
+
+pkgname=vibrancy-colors-icon-theme
+pkgver=2.7
+pkgrel=2
+pkgdesc="Modern, clean and customizable flat icon theme"
+arch=('any')
+url="http://www.ravefinity.com/p/vibrancy-colors-gtk-icon-theme.html"
+license=('CCPL:by-sa' 'GPL2')
+options=('!strip')
+source=("http://archman.org/source/vibrancy-colors-icon-theme.tar.gz")
+sha1sums=('e120a48c446181c75e683166c2fada8d0ffd76e9')
+
+package() {
+  install -d $pkgdir/usr/share/icons
+  cp -r * $pkgdir/usr/share/icons
+  rm $pkgdir/usr/share/icons/vibrancy-colors-icon-theme.tar.gz
+}

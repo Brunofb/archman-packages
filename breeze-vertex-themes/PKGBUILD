@@ -1,0 +1,25 @@
+# Maintainer: Demiray Muhterem <tulliana@archman.org>
+# Author: horst3180 @ deviantart (vertex)
+# Author: kde.org/breeze (breeze)
+
+pkgname=breeze-vertex
+pkgver=20170207
+pkgrel=1
+pkgdesc='Vertex Gtk2, Gtk3, Metacity, Xfwm, Cinnamon and GNOME Shell themes (GNOME 3.22 version)'
+_gnomever=3.22
+_releasever=20170207
+arch=('any')
+url='http://horst3180.deviantart.com/art/Vertex-Theme-470663601'
+url='https://quickgit.kde.org/?p=breeze-gtk.git'
+license=('GPL3')
+depends=('gtk-engine-murrine')
+conflicts=('')
+source=("http://archman.org/source/breeze-vertex.tar.gz")
+sha256sums=('46d7e6f9b4a38638cefe863de149cdb789869333d8eff68f8f24d60d32535074')
+
+
+package() {
+  install -d $pkgdir/usr/share/themes
+  cp -r * $pkgdir/usr/share/themes
+  rm $pkgdir/usr/share/themes/breeze-vertex.tar.gz
+}
