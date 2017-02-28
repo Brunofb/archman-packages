@@ -1,57 +1,58 @@
-# Maintainer: Demiray Muhterem <tulliana[at]archman.org>
+# Maintainer: Demiray Muhterem <tulliana@archman.org>
 
 pkgname=calamares
-pkgver=3.0.1
-pkgrel=1
+pkgver=3.1.0
+_pkgver=3.1.0
+pkgrel=3
+_commit=14942223ddf41ae8440ff334581dbd30955ea42e
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
 url="https://github.com/calamares"
 license=('LGPL')
-depends=('kconfig' 'kcoreaddons' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore' 'mkinitcpio-openswap' 'dmidecode'
-         'boost-libs' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gptfdisk' 'gtk-update-icon-cache' 'rsync' 'squashfs-tools')
+depends=('kconfig' 'kcoreaddons' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore>=3.0.2' 'mkinitcpio-openswap'
+         'boost-libs' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'pythonqt')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=("https://github.com/calamares/calamares/releases/download/v${pkgver}/calamares-${pkgver}.tar.gz"
-         git+https://github.com/Archman-OS/calamares-configs#branch=master)
+source+=(#"$pkgname-$pkgver.tar.gz::https://github.com/Archman-OS/calamares/archive/v${_pkgver}.tar.gz"
+         "$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/Archman-OS/calamares/archive/${_commit}.tar.gz")
 
-sha256sums=('2c0f4f04d1520186ef0b30584daa73c32dce99603bb4d8f6880497ee3f2322b5'
-            'SKIP')
+sha256sums=('SKIP')
 
 prepare() {
-    cp -a ${srcdir}/calamares-configs/* ${srcdir}/calamares-${pkgver}
-    rm -rf ${srcdir}/calamares-configs
-    cd ${srcdir}/calamares-${pkgver}
+	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${_pkgver}
+	cd ${srcdir}/calamares-${_pkgver}
+	# patches here
 }
 
-
 build() {
-    cd ${srcdir}/calamares-${pkgver}
+	cd ${srcdir}/calamares-${_pkgver}
 
-    mkdir -p build
-    cd build
+	mkdir -p build
+	cd build
         cmake .. \
               -DCMAKE_BUILD_TYPE=Release \
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=lib \
-              -DSKIP_MODULES="webview interactiveterminal initramfs dracut packages netinstall license"
+              -DWITH_PYTHONQT:BOOL=ON \
+              -DSKIP_MODULES="webview interactiveterminal initramfs \
+                              initramfscfg dracut dracutlukscfg \
+                              dummyprocess dummypython dummycpp \
+                              dummypythonqt"
         make
 }
 
 package() {
-    cd ${srcdir}/calamares-${pkgver}/build
-    make DESTDIR="$pkgdir" install
-    install -Dm644 "../calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
-    install -Dm644 "../calamares.png" "$pkgdir/usr/share/icons/calamares.png"
+	cd ${srcdir}/calamares-${_pkgver}/build
+	make DESTDIR="$pkgdir" install
+	install -Dm644 "../data/archman-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
+    	install -Dm644 "../calamares.png" "$pkgdir/usr/share/icons/calamares.png"
+	install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
 	install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
-    install -Dm644 "../data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
-    chmod 750 "$pkgdir"/etc/polkit-1/rules.d
-    rm -r "$pkgdir/usr/lib/calamares/modules/dummyprocess/"
-    rm -r "$pkgdir/usr/lib/calamares/modules/dummypython/"
-    rm "$pkgdir/usr/share/calamares/modules/dummypython.conf"
+	install -Dm644 "../data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
+	chmod 750      "$pkgdir"/etc/polkit-1/rules.d
 }
-
