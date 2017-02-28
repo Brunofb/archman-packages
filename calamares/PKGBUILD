@@ -21,7 +21,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"$pkgname-$pkgver.tar.gz::https://github.com/Archman-OS/calamares/archive/v${_pkgver}.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::https://github.com/Archman-OS/calamares/archive/${_commit}.tar.gz")
 
-sha256sums=('SKIP')
+sha256sums=('5d83ebed8c2d9545f4ff4a4898085f1295b1c35bfd3b6b6c4f2cf92bed2227f0')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${_pkgver}
