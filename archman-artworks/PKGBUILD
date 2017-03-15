@@ -1,0 +1,18 @@
+# Author: Demiray Muhterem <tulliana@archman.org>
+
+pkgname=archman-wallpapers
+pkgver=20170315
+pkgrel=1
+pkgdesc='Archman GNU/Linux wallpapers'
+arch=('any')
+url="https://github.com/Archman-os/archman-wallpapers"
+license=('GPL3')
+makedepends=('git')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+
+package() {
+  install -d -m 0755 $pkgdir/usr/share/Wallpaper/
+  cp -r * $pkgdir/usr/share/Wallpaper/
+}

@@ -1,7 +1,7 @@
 # Author & Maintainer: Demiray Muhterem <tulliana@archman.org>
 
 pkgname=archman-base-skel
-pkgver=20170314
+pkgver=20170315
 pkgrel=1
 pkgdesc='Archman default configuration files'
 arch=('any')
