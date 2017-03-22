@@ -14,4 +14,5 @@ sha256sums=('SKIP')
 package() {
   install -d -m 0755 $pkgdir/usr/share/
   cp -r * $pkgdir/usr/share/
+  rm -r * $pkgdir/usr/share/wallpapers/.git
 }
