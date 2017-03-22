@@ -1,11 +1,11 @@
 # Author: Demiray Muhterem <tulliana@archman.org>
 
 pkgname=archman-wallpapers
-pkgver=20170315
+pkgver=20170322
 pkgrel=1
 pkgdesc='Archman GNU/Linux wallpapers'
 arch=('any')
-url="https://github.com/Archman-OS/Wallpaper"
+url="https://github.com/Archman-OS/wallpapers"
 license=('GPL3')
 makedepends=('git')
 source=("git+$url.git")
