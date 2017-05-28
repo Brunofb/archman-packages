@@ -1,0 +1,24 @@
+# Author & Maintainer: Demiray Muhterem <tulliana@archman.org>
+
+pkgname=archman-example-files
+pkgver=20170528
+pkgrel=1
+pkgdesc='Archman Example Test Files'
+arch=('any')
+url="https://github.com/Archman-os/archman-example-files"
+license=('GPL')
+makedepends=('git')
+source=("git+$url.git")
+sha256sums=('SKIP')
+install=$pkgname.install
+depends=('')
+conflicts=('')
+
+pkgver() {
+	date +%Y%m%d
+}
+
+package() {
+	install -d $pkgdir/etc
+	cp -r $srcdir/archman-example-files/shared/skel_new $pkgdir/etc
+}

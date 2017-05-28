@@ -1,0 +1,21 @@
+# Author: Demiray Muhterem <tulliana@archman.org>
+
+
+pkgname=archman-mate-startmenu-icons
+pkgver=0.1
+pkgrel=1
+pkgdesc='Archman Mate Start Menu Icons'
+arch=('any')
+url='http://archman.org'
+license=('GPL3')
+depends=('')
+conflicts=('')
+source=("http://archman.org/source/archman-mate-startmenu-icons.tar.gz")
+sha1sums=('c7255e9cdfc940c2c4384b3edecdc9938458ee69')
+
+
+package() {
+  install -d -m 0755 $pkgdir/usr/share/icons/
+  cp -r * $pkgdir/usr/share/icons/
+  rm $pkgdir/usr/share/icons/archman-mate-startmenu-icons.tar.gz
+}

@@ -1,0 +1,21 @@
+# Author: Demiray Muhterem <tulliana@archman.org>
+
+
+pkgname=archmanos-gtk3-theme
+pkgver=0.1
+pkgrel=1
+pkgdesc='Archman-OS GTK3 Theme'
+arch=('any')
+url='http://archman.org'
+license=('GPL3')
+depends=('')
+conflicts=('')
+source=("http://archman.org/source/archmanos-gtk3-theme.tar.gz")
+sha1sums=('e823a73bd5a6aff01a2876b07c75117a5219f083')
+
+
+package() {
+  install -d -m 0755 $pkgdir/usr/share/themes/
+  cp -r * $pkgdir/usr/share/themes/
+  rm $pkgdir/usr/share/themes/archmanos-gtk3-theme.tar.gz
+}

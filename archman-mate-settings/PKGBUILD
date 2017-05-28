@@ -1,0 +1,24 @@
+# Author & Maintainer: Demiray Muhterem <tulliana@archman.org>
+
+pkgname=archman-mate-settings
+pkgver=20170528
+pkgrel=1
+pkgdesc='Archman Mate default configuration files'
+arch=('any')
+url="https://github.com/Archman-os/archman-mate-settings"
+license=('GPL')
+makedepends=('git')
+source=("git+$url.git")
+sha256sums=('SKIP')
+install=$pkgname.install
+depends=('')
+conflicts=('')
+
+pkgver() {
+	date +%Y%m%d
+}
+
+package() {
+	install -d $pkgdir/etc
+	cp -r $srcdir/archman-mate-settings/shared/skel_new $pkgdir/etc
+}
