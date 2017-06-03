@@ -3,7 +3,7 @@
 
 pkgname=archmanos-gtk3-theme
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc='Archman-OS GTK3 Theme'
 arch=('any')
 url='http://archman.org'
@@ -11,7 +11,7 @@ license=('GPL3')
 depends=('')
 conflicts=('')
 source=("http://archman.org/source/archmanos-gtk3-theme.tar.gz")
-sha1sums=('e823a73bd5a6aff01a2876b07c75117a5219f083')
+sha1sums=('5a33232a2d8677aa59acbe2fc777b08ba5e0e902')
 
 
 package() {

@@ -1,7 +1,7 @@
 # Author & Maintainer: Demiray Muhterem <tulliana@archman.org>
 
 pkgname=archman-xfce-settings
-pkgver=20170528
+pkgver=20170604
 pkgrel=1
 pkgdesc='Archman Xfce default configuration files'
 arch=('any')
