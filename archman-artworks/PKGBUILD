@@ -1,7 +1,7 @@
 # Author: Demiray Muhterem <tulliana@archman.org>
 
 pkgname=archman-wallpapers
-pkgver=20170505
+pkgver=20170603
 pkgrel=1
 pkgdesc='Archman GNU/Linux wallpapers'
 arch=('any')
